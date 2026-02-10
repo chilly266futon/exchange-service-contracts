@@ -4,32 +4,32 @@ package order.v1;
 
 option go_package = "github.com/chilly266futon/exchange-service-contracts/gen/pb/order/v1;orderv1";
 
-
 service OrderService {
   rpc GetOrderStatus(GetOrderStatusRequest) returns (GetOrderStatusResponse);
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
 }
 
 message GetOrderStatusRequest {
-  string order_id = 1;
-  string user_id = 2;
+  string order_id = 1; // UUID
+  string user_id = 2; // UUID
 }
 
 message GetOrderStatusResponse {
-  string order_id = 1;
+  string order_id = 1; // UUID
   OrderStatus status = 2;
 }
 
 message CreateOrderRequest {
-  string user_id = 1; // TODO: uuid
-  string market_id = 2; // TODO: uuid
+  string user_id = 1; // UUID
+  string market_id = 2; // UUID торговой пары
   OrderType order_type = 3;
-  string price = 4; //  TODO: decimal
-  string quantity = 5;
+  string price = 4; //  Цена в минимальных единицах (для BTC: satoshi * 10^8)
+  string quantity = 5; // количество в минимальных единицах
+
 }
 
 message CreateOrderResponse {
-  string order_id = 1;
+  string order_id = 1; // UUID
   OrderStatus status = 2;
 }
 

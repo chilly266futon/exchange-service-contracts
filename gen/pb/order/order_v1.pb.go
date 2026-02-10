@@ -136,8 +136,8 @@ func (OrderStatus) EnumDescriptor() ([]byte, []int) {
 
 type GetOrderStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	OrderId       string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"` // UUID
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`    // UUID
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -240,11 +240,11 @@ func (x *GetOrderStatusResponse) GetStatus() OrderStatus {
 
 type CreateOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`       // TODO: uuid
-	MarketId      string                 `protobuf:"bytes,2,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"` // TODO: uuid
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`       // UUID
+	MarketId      string                 `protobuf:"bytes,2,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"` // UUID
 	OrderType     OrderType              `protobuf:"varint,3,opt,name=order_type,json=orderType,proto3,enum=order.v1.OrderType" json:"order_type,omitempty"`
-	Price         string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"` //  TODO: decimal
-	Quantity      string                 `protobuf:"bytes,5,opt,name=quantity,proto3" json:"quantity,omitempty"`
+	Price         string                 `protobuf:"bytes,4,opt,name=price,proto3" json:"price,omitempty"`       // Decimal, например "123.45"
+	Quantity      string                 `protobuf:"bytes,5,opt,name=quantity,proto3" json:"quantity,omitempty"` // Decimal, например "0.001"
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
