@@ -1,4 +1,4 @@
-module exchange-service-contracts
+module github.com/chilly266futon/exchange-service-contracts
 
 go 1.25
 
