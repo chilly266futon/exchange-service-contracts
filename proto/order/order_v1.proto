@@ -7,6 +7,7 @@ option go_package = "github.com/chilly266futon/exchange-service-contracts/gen/pb
 service OrderService {
   rpc GetOrderStatus(GetOrderStatusRequest) returns (GetOrderStatusResponse);
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse);
+  rpc CancelOrder(CancelOrderRequest) returns (CancelOrderResponse);
 }
 
 message GetOrderStatusRequest {
@@ -29,6 +30,16 @@ message CreateOrderRequest {
 }
 
 message CreateOrderResponse {
+  string order_id = 1; // UUID
+  OrderStatus status = 2;
+}
+
+message CancelOrderRequest {
+  string order_id = 1; // UUID
+  string user_id = 2; // UUID
+}
+
+message CancelOrderResponse {
   string order_id = 1; // UUID
   OrderStatus status = 2;
 }
