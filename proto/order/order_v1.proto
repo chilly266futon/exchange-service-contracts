@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "buf/validate/validate.proto";
+
 package order.v1;
 
 option go_package = "github.com/chilly266futon/exchange-service-contracts/gen/pb/order/v1;orderv1";
@@ -21,11 +23,28 @@ message GetOrderStatusResponse {
 }
 
 message CreateOrderRequest {
-  string user_id = 1; // UUID
-  string market_id = 2; // UUID торговой пары
-  OrderType order_type = 3;
-  string price = 4; //  Цена в минимальных единицах (для BTC: satoshi * 10^8)
-  string quantity = 5; // количество в минимальных единицах
+  string user_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ]; // UUID
+  string market_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ]; // UUID торговой пары
+  OrderType order_type = 3 [
+    (buf.validate.field).enum.defined_only = true,
+    (buf.validate.field).required = true
+  ];
+  string price = 4[
+    (buf.validate.field).string.pattern = "^[0-9]+(\\.[0-9]{1,8})?$",  // до 8 знаков после точки
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).required = true
+  ]; //  Цена в минимальных единицах (для BTC: satoshi * 10^8)
+  string quantity = 5 [
+    (buf.validate.field).string.pattern = "^[0-9]+(\\.[0-9]{1,8})?$",
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).required = true
+  ]; // количество в минимальных единицах
 
 }
 
@@ -35,8 +54,14 @@ message CreateOrderResponse {
 }
 
 message CancelOrderRequest {
-  string order_id = 1; // UUID
-  string user_id = 2; // UUID
+  string order_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ]; // UUID
+  string user_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ]; // UUID
 }
 
 message CancelOrderResponse {

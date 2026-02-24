@@ -1,0 +1,15 @@
+version: v2
+
+modules:
+  - path: proto/order
+
+deps:
+  - buf.build/bufbuild/protovalidate
+
+lint:
+  use:
+    - DEFAULT
+
+breaking:
+  use:
+    - FILE
