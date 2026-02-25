@@ -1,5 +1,8 @@
 version: v2
 
+inputs:
+  - directory: proto/order
+
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.36.11
     out: gen/pb/order
@@ -14,7 +17,3 @@ managed:
   disable:
     - module: buf.build/bufbuild/protovalidate
       file_option: go_package
-  # Опционально: задай префикс для твоих собственных пакетов (рекомендую)
-  override:
-    - file_option: go_package_prefix
-      value: github.com/chilly266futon/exchange-service-contracts/proto/order  # ← замени на свой модуль

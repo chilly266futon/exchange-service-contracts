@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "buf/validate/validate.proto";
+
 package spot.v1;
 
 option go_package = "github.com/chilly266futon/exchange-service-contracts/gen/pb/spot/v1;spotv1";
@@ -12,16 +14,38 @@ service SpotInstrumentService {
 
 message ViewMarketsRequest {
   repeated UserRole user_roles = 1;
+  int32 page_size = 2 [
+    (buf.validate.field).int32.gt = 0,
+    (buf.validate.field).int32.lte = 200
+  ];
+  string page_token = 3 [
+    (buf.validate.field).string.max_len = 100
+  ];
+
+  string sort_by = 4 [
+    (buf.validate.field).string = {in: ["id", "name", "created_at", "volume_24h"]}
+  ];
+
+  bool sort_desc = 5;
 }
 
 message ViewMarketsResponse {
   repeated Market markets = 1;
+  string next_page_token = 2;
+  int32 total = 3;
 }
 
 message Market {
-  string id = 1;
-  string name = 2;
-  string description = 3;
+  string id = 1 [
+    (buf.validate.field).string.uuid = true
+  ];
+  string name = 2 [
+    (buf.validate.field).string.min_len = 3,
+    (buf.validate.field).string.max_len = 64
+  ];
+  string description = 3 [
+    (buf.validate.field).string.max_len = 512
+  ];
   bool enabled = 4;
   google.protobuf.Timestamp deleted_at = 5;
 }

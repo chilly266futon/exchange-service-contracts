@@ -514,8 +514,8 @@ const file_order_v1_proto_rawDesc = "" +
 	"\fOrderService\x12S\n" +
 	"\x0eGetOrderStatus\x12\x1f.order.v1.GetOrderStatusRequest\x1a .order.v1.GetOrderStatusResponse\x12J\n" +
 	"\vCreateOrder\x12\x1c.order.v1.CreateOrderRequest\x1a\x1d.order.v1.CreateOrderResponse\x12J\n" +
-	"\vCancelOrder\x12\x1c.order.v1.CancelOrderRequest\x1a\x1d.order.v1.CancelOrderResponseB\xa7\x01\n" +
-	"\fcom.order.v1B\fOrderV1ProtoP\x01ZHgithub.com/chilly266futon/exchange-service-contracts/proto/order;orderv1\xa2\x02\x03OXX\xaa\x02\bOrder.V1\xca\x02\bOrder\\V1\xe2\x02\x14Order\\V1\\GPBMetadata\xea\x02\tOrder::V1b\x06proto3"
+	"\vCancelOrder\x12\x1c.order.v1.CancelOrderRequest\x1a\x1d.order.v1.CancelOrderResponseB\xab\x01\n" +
+	"\fcom.order.v1B\fOrderV1ProtoP\x01ZLgithub.com/chilly266futon/exchange-service-contracts/gen/pb/order/v1;orderv1\xa2\x02\x03OXX\xaa\x02\bOrder.V1\xca\x02\bOrder\\V1\xe2\x02\x14Order\\V1\\GPBMetadata\xea\x02\tOrder::V1b\x06proto3"
 
 var (
 	file_order_v1_proto_rawDescOnce sync.Once
