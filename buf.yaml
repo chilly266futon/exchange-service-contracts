@@ -3,6 +3,7 @@ version: v2
 modules:
   - path: proto/order
   - path: proto/spot
+  - path: proto/auth
 
 deps:
   - buf.build/bufbuild/protovalidate
