@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 
 service SpotInstrumentService {
   rpc ViewMarkets(ViewMarketsRequest) returns (ViewMarketsResponse);
+  rpc CheckMarket(CheckMarketRequest) returns (CheckMarketResponse);
 }
 
 message ViewMarketsRequest {
@@ -27,6 +28,17 @@ message ViewMarketsRequest {
   ];
 
   bool sort_desc = 5;
+}
+
+message CheckMarketRequest {
+  string market_id = 1 [
+    (buf.validate.field).string.min_len = 1
+  ];
+  repeated UserRole user_roles = 2;
+}
+
+message CheckMarketResponse {
+  bool accessible = 1;
 }
 
 message ViewMarketsResponse {
