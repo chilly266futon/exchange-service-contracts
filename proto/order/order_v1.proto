@@ -13,8 +13,14 @@ service OrderService {
 }
 
 message GetOrderStatusRequest {
-  string order_id = 1; // UUID
-  string user_id = 2; // UUID
+  string order_id = 1 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
+  string user_id = 2 [
+    (buf.validate.field).string.uuid = true,
+    (buf.validate.field).required = true
+  ];
 }
 
 message GetOrderStatusResponse {
